@@ -5,7 +5,7 @@ import PostItem from './components/PostItem';
 import Login from './components/Login';
 import Register from './components/Register';
 import MyPosts from './components/MyPosts';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 
 function App() {
