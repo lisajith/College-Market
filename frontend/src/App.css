@@ -1,0 +1,246 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #4a90e2, #357abd);
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Left, center, right sections */
+.nav-left {
+  flex: 1;
+}
+
+.nav-center {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffdd57;
+  letter-spacing: 1px;
+}
+
+.nav-right {
+  flex: 1;
+  text-align: right;   /* ✅ pushes links/buttons to the top-right corner */
+}
+
+.nav-left a,
+.nav-right a,
+.nav-right button {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 15px;
+  margin-right: 40px;
+}
+
+.nav-right button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.nav-left a:hover,
+.nav-right a:hover,
+.nav-right button:hover {
+  color: #ffdd57;
+}
+
+/* Push content down so it’s not hidden behind navbar */
+main, .page {
+  padding-top: 100px;
+}
+
+/* Headings centered */
+h2 {
+  text-align: center;
+  margin: 40px 0 30px;   /* more breathing room */
+  font-size: 36px;       /* bigger size for prominence */
+  font-weight: 700;      /* bold */
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;        /* deep, professional color */
+  letter-spacing: 1.5px; /* subtle spacing for elegance */
+  text-transform: uppercase; /* optional: makes headings all caps */
+}
+
+
+/* Container for posts */
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* default: 1 card per row */
+  gap: 12px;                    /* tighter gap between cards */
+  padding: 20px;
+  margin: 100px;
+}
+
+@media (min-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr 1fr; /* 2 cards per row */
+  }
+}
+
+/* Item card styling */
+.item-card {
+  background: white;
+  border-radius: 10px;
+  padding: 40px;
+  margin: 5px;
+  max-width: 650px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  text-align: left;
+
+  display: flex;              /* ✅ make card a flex container */
+  flex-direction: column;     /* stack content vertically */
+  justify-content: space-between; /* push footer to bottom */
+}
+
+
+.item-card:hover {
+  transform: translateY(-3px);
+}
+
+.item-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item-card h3 {
+  text-align: center;            /* only title centered */
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.item-card p {
+  margin: 6px 0;
+}
+
+.item-card p strong {
+  font-weight: 600;              /* bold labels */
+  color: #2c3e50
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.card-footer p {
+  margin: 0;
+}
+
+.end-footer {
+  display: flex;
+  justify-content: space-between; /* ✅ evenly spread left, center, right */
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid #eee;     /* subtle divider */
+  padding-top: 10px;
+}
+
+.end-footer p {
+  margin: 0;
+  font-weight: 600;
+  color: #2c3e50;
+  flex: 1;                        /* ✅ each takes equal space */
+  text-align: center;             /* center text in its slot */
+}
+
+.end-footer p:first-child {
+  text-align: left;               /* Contact left */
+}
+
+.end-footer p:last-child {
+  text-align: right;              /* Posted By right */
+}
+
+.card-actions {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.card-actions button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #4a90e2;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.card-actions button:hover {
+  background: #357abd;
+}
+
+/* Forms */
+form {
+  background: white;
+  padding: 40px;
+  margin: 120px auto;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+
+  display: flex;              /* ✅ make form a flex container */
+  flex-direction: column;     /* stack inputs vertically */
+  align-items: center;        /* center inputs & button horizontally */
+}
+
+form input,
+form select,
+form button {
+  width: 80%;                 /* ✅ narrower so they don’t stretch full width */
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+form button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #357abd;
+}
