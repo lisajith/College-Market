@@ -3,35 +3,33 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://college-market-stmarry.netlify.app/", // replace with your actual Netlify URL
+  credentials: true
+}));
 app.use(express.json());
 
-// Replace <username> and <password> with your Atlas DB user credentials
-// Replace "collegeMarket" with your database name
+// MongoDB Atlas connection
 const uri = "mongodb+srv://lisajith27:bhoombhoomshakalaka@cluster0.kyzeqfb.mongodb.net/collegeMarket";
 
-mongoose.connect(uri)
-  .then(() => console.log("MongoDB Atlas connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("✅ MongoDB Atlas connected"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
 
 // Health check
 app.get('/', (req, res) => {
   res.send('✅ Backend is running');
 });
 
-app.use(cors({
-  origin: "http://localhost:3000", // for local dev
-  credentials: true
-}));
-
-
 // Routes
-const itemRoutes = require('./routes/Items');
+const itemRoutes = require('./routes/Items'); // ✅ lowercase
 app.use('/items', itemRoutes);
-
-app.listen(5000, () => console.log('Backend running on port 5000'));
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+// ✅ Use Railway’s dynamic port
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
 
 module.exports = app;

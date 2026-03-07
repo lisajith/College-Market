@@ -7,7 +7,7 @@ function MyPosts({ user }) {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    fetch('https://college-market-production.up.railway.app//items/mine', {
+    fetch('http://localhost:5000/items/mine', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -16,7 +16,7 @@ function MyPosts({ user }) {
 
   const deleteItem = async (id) => {
     const token = localStorage.getItem('token');
-    await fetch(`https://college-market-production.up.railway.app//items/${id}`, {
+    await fetch(`http://localhost:5000/items/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -40,7 +40,7 @@ function MyPosts({ user }) {
 
   const saveEdit = async (id) => {
     const token = localStorage.getItem('token');
-    const res = await fetch(`https://college-market-production.up.railway.app//items/${id}`, {
+    const res = await fetch(`http://localhost:5000/items/${id}`, {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
