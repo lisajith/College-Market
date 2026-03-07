@@ -19,6 +19,11 @@ app.get('/', (req, res) => {
   res.send('✅ Backend is running');
 });
 
+app.use(cors({
+  origin: "http://localhost:3000", // for local dev
+  credentials: true
+}));
+
 
 // Routes
 const itemRoutes = require('./routes/Items');
