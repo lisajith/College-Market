@@ -1,16 +1,20 @@
+// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Replace <username> and <password> with your Atlas DB user credentials
-// Replace "collegeMarket" with your database name
-const uri = "mongodb+srv://lisajith27:bhoombhoomshakalaka@cluster0.kyzeqfb.mongodb.net/collegeMarket";
-
-mongoose.connect(uri)
+// MongoDB connection (use environment variable from Railway)
+const uri = process.env.MONGO_URI;
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log("✅ MongoDB Atlas connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
@@ -18,7 +22,9 @@ mongoose.connect(uri)
 const itemRoutes = require('./routes/items');
 app.use('/items', itemRoutes);
 
-app.listen(5000, () => console.log('Backend running on port 5000'));
-
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+// Dynamic port for Railway
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
