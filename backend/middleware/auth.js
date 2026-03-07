@@ -1,21 +1,19 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const authMiddleware = async (req, res, next) => {
+const JWT_SECRET = "supersecretkey";
+
+async function authMiddleware(req, res, next) {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: "No token provided" });
+
   try {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id);
-
-    if (!user) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    req.user = user;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = await User.findById(decoded.id); // attach full user
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Invalid token' });
+    res.status(401).json({ error: "Invalid token" });
   }
-};
+}
 
 module.exports = authMiddleware;
