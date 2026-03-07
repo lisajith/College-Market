@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch('http://localhost:5000/auth/me', {
+      fetch('https://college-market-production.up.railway.app//auth/me', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -31,7 +31,7 @@ function App() {
         });
     }
 
-    fetch('http://localhost:5000/items')
+    fetch('https://college-market-production.up.railway.app//items')
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
