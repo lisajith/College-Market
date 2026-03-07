@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 
 // Routes
-const itemRoutes = require('./routes/items');
+const itemRoutes = require('./routes/Items');
 app.use('/items', itemRoutes);
 
 app.listen(5000, () => console.log('Backend running on port 5000'));
