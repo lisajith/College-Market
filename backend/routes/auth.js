@@ -5,13 +5,12 @@ const User = require('../models/User');
 const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
-const JWT_SECRET = "supersecretkey"; // use env variable in production
+const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
 
 // Register
 router.post('/register', async (req, res) => {
   try {
     const { name, email, rollNo, password, role } = req.body;
-
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ error: "Email already registered" });
 
@@ -29,7 +28,6 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "User not found" });
 
@@ -43,7 +41,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// ✅ Get current user (for refresh persistence)
+// Get current user
 router.get('/me', authMiddleware, async (req, res) => {
   res.json({ user: { name: req.user.name, email: req.user.email, rollNo: req.user.rollNo, role: req.user.role } });
 });
