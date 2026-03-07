@@ -7,10 +7,17 @@ import Register from './components/Register';
 import MyPosts from './components/MyPosts';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
+import { fetchItems } from "./api";
+
 
 function App() {
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
+
+  useEffect(() => {
+  fetchItems().then(res => setItems(res.data));
+}, []);
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
