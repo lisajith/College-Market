@@ -5,40 +5,34 @@ import PostItem from './components/PostItem';
 import Login from './components/Login';
 import Register from './components/Register';
 import MyPosts from './components/MyPosts';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
-import { fetchItems, loginUser } from "./api"; // import API helpers
 
 function App() {
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
 
-  // Fetch items from Railway backend
-  useEffect(() => {
-    fetchItems()
-      .then(res => setItems(res.data))
-      .catch(err => console.error("Error fetching items:", err));
-  }, []);
-
-  // Check if user is logged in
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch("https://college-market-ten.vercel.app/auth/me", {
-        headers: { Authorization: `Bearer ${token}` }
+      fetch('http://localhost:5000/auth/me', {
+        headers: { 'Authorization': `Bearer ${token}` }
       })
         .then(res => res.json())
         .then(data => {
           if (data.user) setUser(data.user);
-        })
-        .catch(err => console.error("Auth check failed:", err));
+        });
     }
+
+    fetch('http://localhost:5000/items')
+      .then(res => res.json())
+      .then(data => setItems(data));
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
-    window.location.href = "/"; // redirect to home
+    window.location.href = "/"; // ✅ redirect to home
   };
 
   return (

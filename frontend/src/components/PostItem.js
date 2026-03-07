@@ -20,7 +20,7 @@ function PostItem({ onAdd }) {
     e.preventDefault();
     const token = localStorage.getItem('token'); // get JWT from login
 
-    const res = await fetch('https://college-market-ten.vercel.app/items', {
+    const res = await fetch('http://localhost:5000/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
