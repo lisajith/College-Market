@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://college-market-production.up.railway.app"
+  baseURL: "https://college-market-ten.vercel.app"
 });
 
 // Items

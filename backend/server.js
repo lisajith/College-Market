@@ -12,10 +12,10 @@ app.use(express.json());
 // MongoDB Atlas connection
 const uri = "mongodb+srv://lisajith27:bhoombhoomshakalaka@cluster0.kyzeqfb.mongodb.net/collegeMarket";
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri)
   .then(() => console.log("✅ MongoDB Atlas connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
-
+  
 // Health check
 app.get('/', (req, res) => {
   res.send('✅ Backend is running');

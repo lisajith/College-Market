@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch("https://college-market-production.up.railway.app/auth/me", {
+      fetch("https://college-market-ten.vercel.app/auth/me", {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
