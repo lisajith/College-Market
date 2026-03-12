@@ -19,7 +19,8 @@ function ItemList({ items, user }) {
               ) : (
                 <p className="contact"><em>Login to see contact info</em></p>
               )}
-              <p className="postedBy"><strong>Posted By:</strong> {item.postedBy}</p>
+              <p>...</p>
+              {/* <p className="postedBy"><strong>Posted By:</strong> {item.postedBy}</p> */}
             </div>
           </div>
         ))}
