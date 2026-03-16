@@ -14,13 +14,11 @@ function ItemList({ items, user }) {
 
             <div className="card-footer end-footer">
               {user ? (
-                <p>...</p>
-                // <p className="contact"><strong>Contact:</strong> {item.contact}</p>
+                <p className="contact"><strong>Contact:</strong> {item.contact}</p>
               ) : (
                 <p className="contact"><em>Login to see contact info</em></p>
               )}
-              <p>...</p>
-              {/* <p className="postedBy"><strong>Posted By:</strong> {item.postedBy}</p> */}
+                <p className="postedBy"><strong>Posted By:</strong> {item.postedBy}</p>
             </div>
           </div>
         ))}
